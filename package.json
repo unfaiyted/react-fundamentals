@@ -1,0 +1,39 @@
+{
+  "name": "react-fundamentals",
+  "version": "1.0.0",
+  "description": "learning react",
+  "main": "index.js",
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^1.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.16.2",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unfaiyted/react-fundamentals.git"
+  },
+  "keywords": [
+    "test",
+    "react",
+    "git"
+  ],
+  "author": "Dane L Miller",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/unfaiyted/react-fundamentals/issues"
+  },
+  "homepage": "https://github.com/unfaiyted/react-fundamentals#readme"
+}
