@@ -69,7 +69,8 @@ module.exports = {
         //Returns a new array of all the requests
         // profile and score from the user data request
         return axios.all(players.map(getUserData))
-            .then(sortPlayers);
+            .then(sortPlayers)
+            .catch(handleError);
     },
     fetchPopularRepos: function(language)
     {
