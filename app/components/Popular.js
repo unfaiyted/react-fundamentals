@@ -1,4 +1,31 @@
 var React = require('react');
+var PropTypes = require('prop-types');
+
+
+// Can be used without state
+// Stateless Functional Component
+function SelectLanguage(props)  {
+        var languages = ['All','Popular','Ruby','Java','CSS','Python'];
+       return ( <ul className="languages">{languages.map(function (lang){
+
+            return (
+                <li
+                    style={lang === props.selectedLanguage ? { color: '#d0021B'}: null}
+                    onClick={props.onSelect.bind(null, lang)}
+                    key={lang}>
+                    {lang}
+                </li>
+            )
+        })}</ul>
+       )
+}
+
+
+SelectLanguage.propTypes = {
+    selectedLanguage: PropTypes.string.isRequired,
+    onSelect: PropTypes.func.isRequired,
+};
+
 
 
 class Popular extends React.Component {
@@ -6,7 +33,7 @@ class Popular extends React.Component {
         super(props);
         this.state = {
             selectedLanguage: 'All'
-        }
+        };
 
         this.updateLanguage = this.updateLanguage.bind(this);
     }
@@ -20,21 +47,17 @@ class Popular extends React.Component {
     }
 
     render() {
-        var languages = ['All','Popular','Ruby','Java','CSS','Python'];
-        return (
-            <ul className="languages">{languages.map(function (lang){
 
-                return (
-                   <li
-                       style={lang === this.state.selectedLanguage ? { color: '#d0021B'}: null}
-                       onClick={this.updateLanguage.bind(null, lang)}
-                       key={lang}>
-                       {lang}
-                   </li>
-                 )
-            }, this)}</ul>
+        return (
+            <div>
+                <SelectLanguage selectedLanguage={this.state.selectedLanguage}
+                                onSelect={this.updateLanguage}/>
+            </div>
         )
     }
 }
+
+
+
 
 module.exports = Popular;
