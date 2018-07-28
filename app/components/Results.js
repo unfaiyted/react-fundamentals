@@ -49,14 +49,15 @@ class Results extends React.Component {
         loading: true,
     };
 
-    componentDidMount() {
+   async componentDidMount() {
         const { playerOneName, playerTwoName} = queryString.parse(this.props.location.search);
 
-        battle([
+        const players = await battle([
             playerOneName,
             playerTwoName,
-        ]).then((results) => (
-            (results === null)
+        ])
+
+       return (players === null)
                  ? this.setState( () => ({
                         error: 'Looks like we did something wrong! Retry pleasssee',
                         loading: false,
@@ -67,7 +68,6 @@ class Results extends React.Component {
                   loser: results[1],
                   loading: false,
               })
-                ))
         )
     }
 
