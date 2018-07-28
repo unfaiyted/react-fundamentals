@@ -7,8 +7,9 @@ var sec = "59b2b18ab7b6716d66a7f4a898f780fd5b808ab5";
 var params = "?client_id=" + id + "&client_secret=" + sec;
 
 
+
 function getProfile(username) {
-    return axios.get('https://api.gethub.com/users/' + username + params)
+    return axios.get('https://api.github.com/users/' + username + params)
         .then(function (user) {
             //formats data before passing it back to the function
            return user.data;
@@ -16,7 +17,7 @@ function getProfile(username) {
 }
 
 function getRepos(username) {
-    return axios.get('https://api.gethub.com/users/' + username + '/repos ' + params +
+    return axios.get('https://api.github.com/users/' + username + '/repos' + params +
     '&per_page=100')
 
 }
