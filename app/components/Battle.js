@@ -1,37 +1,39 @@
-const React = require('react');
-const PropTypes = require('prop-types');
-const Link = require('react-router-dom').Link;
-const PlayerPreview = require('./PlayerPreview');
-
-
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import PlayerPreview from './PlayerPreview';
 
 
 
 class PlayerInput extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: ''
-        };
+    static propTypes = {
+        id: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired,
+        onSubmit: PropTypes.func.isRequired,
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+    };
 
-    }
+    static defaultProps = {
+        label: 'Username'
+    };
 
-    handleChange(event) {
+    state = {
+        username: ''
+    };
+
+    handleChange = (event) => {
         const value  = event.target.value;
         // events need to be set to capture event variable
         this.setState(() => ({ username: value }));
     }
 
-    handleSubmit(event) {
+    handleSubmit = (event) => {
         event.preventDefault();
         this.props.onSubmit(
             this.props.id,
             this.state.username
         )
-    }
+    };
 
     render() {
         const { username } = this.state;
@@ -59,46 +61,31 @@ class PlayerInput extends React.Component {
 }
 
 
-PlayerInput.propTypes = {
-    id: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    onSubmit: PropTypes.func.isRequired,
 
-};
-
-PlayerInput.defaultProps = {
-    label: 'Username'
-}
 
 class Battle extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            playerOneName: '',
-            playerTwoName: '',
-            playerOneImg: null,
-            playerTwoImg: null,
-        }
+    state = {
+        playerOneName: '',
+        playerTwoName: '',
+        playerOneImg: null,
+        playerTwoImg: null,
+    };
 
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleReset = this.handleReset.bind(this);
-    }
-
-    handleReset(id) {
+    handleReset = (id) => {
         this.setState(function() {
             var newState = {};
             newState[id + 'Name'] = '';
             newState[id + 'Img'] = null;
             return newState;
         })
-    }
+    };
 
-    handleSubmit(id, username) {
+    handleSubmit = (id, username) => {
         this.setState(() => ({
             [id + 'Name']: username,
             [id + 'Img']: `https://github.com/${username}.png?size=200`
         }))
-    }
+    };
 
 
     render() {
@@ -159,4 +146,4 @@ class Battle extends React.Component {
     }
 }
 
-module.exports = Battle;
+export default Battle;

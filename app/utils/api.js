@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios'
 
 // deal with rate limiting with api key
 // add if rate limiting issues..
@@ -48,20 +48,19 @@ function sortPlayers(players) {
     return players.sort((a,b) => (b.score - a.score));
 }
 
-module.exports = {
-    battle (players) {
+export function battle (players) {
         //Returns a new array of all the requests
         // profile and score from the user data request
         return Promise.all(players.map(getUserData))
             .then(sortPlayers)
             .catch(handleError);
-    },
-    fetchPopularRepos (language) {
+}
+
+export function fetchPopularRepos (language) {
         const encodedURI = window.encodeURI(`https://api.github.com/search/repositories?q=stars:>1+language:
             ${language}&sort=stars&order=desc&type=Repositories`);
 
         return axios.get(encodedURI).then(({ data }) => data.items );
     }
-};
 
 

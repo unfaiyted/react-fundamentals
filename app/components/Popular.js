@@ -1,8 +1,7 @@
-var React = require('react');
-var PropTypes = require('prop-types');
-var api = require('../utils/api');
-
-var Loading = require('./Loading');
+import React from 'react';
+import PropTypes from 'prop-types';
+import { fetchPopularRepos } from '../utils/api';
+import Loading from './Loading';
 
 
 function RepoGrid ({ repos }) {
@@ -70,28 +69,23 @@ SelectLanguage.propTypes = {
 
 
 class Popular extends React.Component {
-    constructor (props) {
-        super(props);
-        this.state = {
-            selectedLanguage: 'All',
-            repos: null
-        };
-
-        this.updateLanguage = this.updateLanguage.bind(this);
-    }
+    state = {
+        selectedLanguage: 'All',
+        repos: null
+    };
 
     componentDidMount() {
         this.updateLanguage(this.state.selectedLanguage);
     }
 
-    updateLanguage(lang) {
+    updateLanguage = (lang) => {
         this.setState(() => ({
                 selectedLanguage: lang,
                 repos: null})
         );
 
         // AJAX Request
-        api.fetchPopularRepos(this.state.selectedLanguage)
+        fetchPopularRepos(this.state.selectedLanguage)
             .then((repos) => (this.setState(() => ({
                         repos
                     }))))
@@ -120,4 +114,4 @@ class Popular extends React.Component {
 
 
 
-module.exports = Popular;
+export default Popular;
